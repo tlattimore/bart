@@ -1,0 +1,14 @@
+<?php
+
+
+function bart_preprocess_html(&$variables) {
+  // Get the contents of the SVG sprite.
+  $icons = file_get_contents(\Drupal::theme()->getActiveTheme()->getPath() . '/images/icons.svg');
+
+  // Add a new render array to page_bottom so the icons
+  // get added to the page.
+  $variables['page_bottom']['icons'] = array(
+    '#type' => 'inline_template',
+    '#template' => '<span class="hidden">' . $icons . '</span>',
+  );
+}
